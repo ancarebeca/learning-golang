@@ -87,8 +87,6 @@ Each time you make some changes and push it into the master repo, your friend ha
 into the git repo. Meaning to make sure you’re working on the latest version of the git repo each time you start working, 
 a git pull command is the way to go
 
-- Mention branch workflow !!
-
 1) Clone the repo that you want to collaborate
 Run git pull origin master to make sure those changes are reflected on my local copy of the repo
 
@@ -111,12 +109,17 @@ git-training (my-first-branch) $ git branch
 
 3) User2 will add some changes to “my-first-branch”
 
-Solving conflicts
+4) Solving conflicts
 
-4) Pull request & merge
+5) Pull request & merge
 
-
-
+**Branching workflow at Flyt:**
+1) Anything in the master branch is deployable
+2) To work on something new, create a branch off fro mmaster and given a descriptively name(ie: new-oauth2-scopes)
+3) Commit to that branch locally and regularly push your work to the same named branch on the server
+4) When you need feedback or help, or you think the branch is ready for merging, open a pull request
+5) After someone else has reviewed and signed off on the feature, you can merge it into master
+6) Once it is merged and pushed to master, you can and should deploy immediately
 
 
 
