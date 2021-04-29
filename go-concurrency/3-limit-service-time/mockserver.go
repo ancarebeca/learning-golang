@@ -45,9 +45,9 @@ func createMockRequest(pid int, fn func(), u *User) {
 }
 
 func shortProcess() {
-	time.Sleep(3 * time.Second)
+	time.Sleep(6 * time.Second)
 }
 
 func longProcess() {
-	time.Sleep(6 * time.Second)
+	time.Sleep(11 * time.Second)
 }
