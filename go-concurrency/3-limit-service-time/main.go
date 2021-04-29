@@ -28,11 +28,11 @@ type User struct {
 // HandleRequest runs the processes requested by users. Returns false
 // if process had to be killed
 func HandleRequest(process func(), u *User) bool {
-	done := make(chan bool)
+	done := make(chan interface{})
 	go func() {
-				// Why I can not move this inside of the case
 				process()
-				done <- true
+				close(done)
+
 	}()
 
 	for {
@@ -40,10 +40,10 @@ func HandleRequest(process func(), u *User) bool {
 		case <-done:
 			return true
 		case <-time.Tick(time.Second * 1):
-			u.Mux.Lock()
+			//u.Mux.Lock()
 			u.TimeUsed++
-			u.Mux.Unlock()
-			if u.TimeUsed > 10 && !u.IsPremium {
+			//u.Mux.Unlock()
+			if !u.IsPremium && u.TimeUsed >= 10  { // Add this two the code review check list
 				return false
 			}
 		}
