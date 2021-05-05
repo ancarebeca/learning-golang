@@ -115,7 +115,7 @@ git-training (my-first-branch) $ git branch
 
 **Branching workflow at Flyt:**
 1) Anything in the master branch is deployable
-2) To work on something new, create a branch off fro mmaster and given a descriptively name(ie: new-oauth2-scopes)
+2) To work on something new, create a branch off from master and given a descriptive name (ie: new-oauth2-scopes)
 3) Commit to that branch locally and regularly push your work to the same named branch on the server
 4) When you need feedback or help, or you think the branch is ready for merging, open a pull request
 5) After someone else has reviewed and signed off on the feature, you can merge it into master
