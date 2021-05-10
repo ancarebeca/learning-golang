@@ -21,14 +21,13 @@ type User struct {
 	ID        int
 	IsPremium bool
 	TimeUsed  int64 // in seconds
-	Mux       sync.Mutex
+	sync.RWMutex
 
 }
 
 // HandleRequest runs the processes requested by users. Returns false
 // if process had to be killed
 func HandleRequest(process func(), u *User) bool {
-	// defer c.mu.Unlock() @marco can I do this? here?
 	done := make(chan interface{})
 	go func() {
 				process()
@@ -41,12 +40,15 @@ func HandleRequest(process func(), u *User) bool {
 		case <-done:
 			return true
 		case <-time.Tick(time.Second * 1):
-			//u.Mux.Lock()
+			u.Lock()
 			u.TimeUsed++
-			//u.Mux.Unlock()
-			if !u.IsPremium && u.TimeUsed >= 10  { // Add this two the code review check list
+			u.Unlock()
+			u.RLock()
+			if !u.IsPremium && u.TimeUsed >= 10  {
+				u.RUnlock()
 				return false
 			}
+			u.RUnlock()
 		}
 	}
 }

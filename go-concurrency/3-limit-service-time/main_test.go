@@ -1,15 +1,19 @@
 package main
 
 import (
+	"sync"
 	"testing"
 )
 
 func TestHandleRequest(t *testing.T) {
 	u0 := User{ID: 0, IsPremium: false}
-	//u1 := User{ID: 1, IsPremium: true}
-
-	go HandleRequest(shortProcess, &u0)
-	go HandleRequest(shortProcess, &u0)
-	go HandleRequest(shortProcess, &u0)
-	go HandleRequest(shortProcess, &u0)
+	var wg sync.WaitGroup
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go func () {
+			HandleRequest(shortProcess, &u0)
+			wg.Done()
+		}()
+	}
+	wg.Wait()
 }
