@@ -19,7 +19,7 @@ The Go community has plenty resources to read about go's concurrency model and h
 | 2 | [Race Condition in Caching Cache](https://github.com/mindworker/go-concurrency-exercises/tree/master/2-race-in-cache#race-condition-in-caching-szenario)  |
 | 3 | [Limit Service Time for Free-tier Users](3-limit-service-time/README.md)  |
 | 4 | [Graceful SIGINT Killing](4-graceful-sigint/README.md)  |
-| 5 | [Clean Inactive Sessions to Prevent Memory Overflow](https://github.com/mindworker/go-concurrency-exercises/tree/master/5-session-cleaner)  |
+| 5 | [Clean Inactive Sessions to Prevent Memory Overflow](5-session-cleaner)  |
 
 ## License
 
