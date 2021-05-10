@@ -19,6 +19,25 @@ Exercises:
   1. Write a program that check checks whether a number is even
       here’s the solution: https://play.golang.org/p/nTEiUqdU90f
   2. Write a program in Go to display the first 10 natural numbers.
+      here’s the solution: https://play.golang.org/p/nTEiUqdU90f
+  2. Write a program in Go to add the first 5 natural numbers and display the following      
+      ```
+         The total before loop is 0
+         Begining of the loop
+         0 + 0 = 0
+         0 + 1 = 1
+         1 + 2 = 3
+         3 + 3 = 6
+         6 + 4 = 10
+         10 + 5 = 15
+         15 + 6 = 21
+         21 + 7 = 28
+         28 + 8 = 36
+         36 + 9 = 45
+         End of the loop
+         The total before loop is 45
+     ```
+     here’s the solution: https://play.golang.org/p/kuix1_qWYLl
     
 ### Function
 1. Write a recursive function to calculate the sum of numbers from 0 to 10
