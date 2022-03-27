@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func countSubarrays(arr []int) []int {
 	if len(arr) == 1 {
 		return []int{1}
@@ -11,31 +13,28 @@ func countSubarrays(arr []int) []int {
 		subarraysCounter[index] += 1
 
 		rightIndex := index + 1
-		for {
-			if rightIndex >= (len(arr)) {
-				break
-			}
-
-			rightElement := arr[rightIndex]
-			if currentElement < rightElement {
-				break
-			}
-			subarraysCounter[index] += 1
-			rightIndex++
-		}
-
 		leftIndex := index - 1
+
+		checkRight := rightIndex >= (len(arr)) || currentElement < arr[rightIndex]
+		checkLeft := leftIndex < 0 || currentElement < arr[leftIndex]
 		for {
-			if leftIndex < 0 {
+
+			if checkRight && checkLeft {
 				break
 			}
 
-			leftElement := arr[leftIndex]
-			if currentElement < leftElement {
-				break
+			if !checkRight {
+				subarraysCounter[index] += 1
+				rightIndex++
+				checkRight = rightIndex >= (len(arr)) || currentElement < arr[rightIndex]
 			}
-			subarraysCounter[index] += 1
-			leftIndex--
+
+			if !checkLeft {
+				subarraysCounter[index] += 1
+				leftIndex--
+				checkLeft = leftIndex < 0 || currentElement < arr[leftIndex]
+			}
+
 		}
 	}
 	return subarraysCounter
@@ -43,4 +42,5 @@ func countSubarrays(arr []int) []int {
 
 func main() {
 	// Call countSubarrays() with test cases here
+	fmt.Println(countSubarrays([]int{3, 4, 1, 6, 2}))
 }
