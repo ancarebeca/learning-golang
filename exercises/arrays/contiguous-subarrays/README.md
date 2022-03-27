@@ -16,6 +16,14 @@ Output
   An array where each index i contains an integer denoting the maximum number of contiguous subarrays of arr[i]
 
 Example:
+  arr = [1, 3]  len(arr) = 2
+  output = [1, 2]
+
+Explanation:
+  For index 0 - [1] is the only contiguous subarray that starts (or ends) with 1, and the maximum value in this subarray is 1.
+  For index 1 - [3], [1, 3] 
+
+Example:
   arr = [3, 4, 1, 6, 2]
   output = [1, 3, 1, 5, 1]
 

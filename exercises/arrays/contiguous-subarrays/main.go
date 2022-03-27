@@ -5,20 +5,40 @@ func countSubarrays(arr []int) []int {
 		return []int{1}
 	}
 
-	output := make([]int, 8)
-	var subarraysCounter []int
+	subarraysCounter := make([]int, len(arr))
 
 	for index, currentElement := range arr {
-		subarraysCounter[index] +=1
+		subarraysCounter[index] += 1
 
-		nextElement := index + 1
-		if currentElement > nextElement {
-			subarraysCounter[index] +=1
+		rightIndex := index + 1
+		for {
+			if rightIndex >= (len(arr)) {
+				break
+			}
+
+			rightElement := arr[rightIndex]
+			if currentElement < rightElement {
+				break
+			}
+			subarraysCounter[index] += 1
+			rightIndex++
 		}
 
+		leftIndex := index - 1
+		for {
+			if leftIndex < 0 {
+				break
+			}
 
+			leftElement := arr[leftIndex]
+			if currentElement < leftElement {
+				break
+			}
+			subarraysCounter[index] += 1
+			leftIndex--
+		}
 	}
-	return output
+	return subarraysCounter
 }
 
 func main() {
