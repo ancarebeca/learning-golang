@@ -19,4 +19,6 @@ func TestAreTheyEqual(t *testing.T) {
 	assert.Equal(t, []int{2, 1, 3}, countSubarrays([]int{6, 4, 7}))
 
 	assert.Equal(t, []int{3, 3, 3}, countSubarrays([]int{6, 6, 6}))
+
+	assert.Equal(t, []int{1, 2, 1, 2}, countSubarrays([]int{3, 7, 1, 6}))
 }
