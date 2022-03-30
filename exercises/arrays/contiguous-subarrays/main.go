@@ -5,47 +5,54 @@ func countSubarrays(arr []int) []int {
 		return []int{1}
 	}
 
-	subarraysCounter := make([]int, len(arr))
+	leftCounter := make([]int, len(arr))
 
-	max_number_index := 0
-	for index, currentElement := range arr {
-		subarraysCounter[index] += 1
-		leftIndex := index - 1
-		if index == 0 {
-			continue
-		}
-
-		if currentElement > arr[leftIndex] {
-			subarraysCounter[index] += 1
-		}
-
-		if currentElement > arr[max_number_index] {
-			numSubarrays := index - max_number_index - 1
-			subarraysCounter[index] += numSubarrays
-			max_number_index = index
-		}
-	}
-
-	max_number_index = len(arr) - 1
-	for i := len(arr) - 1; i >= 0; i-- {
+	indexMaximumNumber := 0
+	contiguousSubarrays := 0
+	leftCounter[0] += 1
+	for i := 1; i < len(arr); i++ {
 		currentElement := arr[i]
+		left := i - 1
+		leftCounter[i] += 1
 
-		if i == 0 {
-			continue
-		}
-		leftIndex := i - 1
-
-		if currentElement > arr[leftIndex] {
-		}
-
-		if currentElement > arr[max_number_index] {
-			numSubarrays := max_number_index - i - 2
-			subarraysCounter[i] += numSubarrays
-			max_number_index = i
+		if currentElement >= arr[indexMaximumNumber] {
+			leftCounter[i] += leftCounter[indexMaximumNumber] + (i - indexMaximumNumber - 1)
+			indexMaximumNumber = i
+		} else if currentElement > arr[left] {
+			contiguousSubarrays += 1
+			leftCounter[i] += contiguousSubarrays
+		} else {
+			contiguousSubarrays = 0
 		}
 	}
 
-	return subarraysCounter
+	indexMaximumNumber = len(arr) - 1
+	contiguousSubarrays = 0
+	rightCounter := make([]int, len(arr))
+
+	rightCounter[indexMaximumNumber] += 1
+	for i := len(arr) - 2; i >= 0; i-- {
+		currentElement := arr[i]
+		right := i + 1
+		rightCounter[i] += 1
+
+		if currentElement >= arr[indexMaximumNumber] {
+			rightCounter[i] += rightCounter[indexMaximumNumber] + (indexMaximumNumber - i - 1)
+			indexMaximumNumber = i
+		} else if currentElement > arr[right] {
+			contiguousSubarrays += 1
+			rightCounter[i] += contiguousSubarrays
+		} else {
+			contiguousSubarrays = 0
+		}
+	}
+
+	output := make([]int, len(arr))
+
+	for i, _ := range rightCounter {
+		output[i] = leftCounter[i] + rightCounter[i] - 1
+	}
+	return output
 }
 
 func main() {
