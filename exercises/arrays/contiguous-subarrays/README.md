@@ -34,6 +34,3 @@ Explanation:
   For index 3 - [6], [6, 2], [1, 6], [4, 1, 6], [3, 4, 1, 6]
   For index 4 - [2]
   So, the answer for the above input is [1, 3, 1, 5, 1]
-
-
-https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=226517205173943&ppid=454615229006519&practice_plan=0
