@@ -32,6 +32,7 @@ Example 2
 
 Notes:
 
-- Hint: https://go.dev/blog/strings
+Hint: 
+- https://go.dev/blog/strings
 - https://levelup.gitconnected.com/demystifying-bytes-runes-and-strings-in-go-1f94df215615
 - https://medium.com/a-journey-with-go/go-cast-vs-conversion-by-example-26e0ef3003f0
