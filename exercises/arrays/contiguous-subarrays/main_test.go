@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestAreTheyEqual(t *testing.T) {
+func TestCountSubarrays(t *testing.T) {
 	assert.Equal(t, []int{1}, countSubarrays([]int{1}))
 
 	assert.Equal(t, []int{1, 2}, countSubarrays([]int{1, 3}))
