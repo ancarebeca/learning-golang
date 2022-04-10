@@ -21,20 +21,21 @@ func matchingPairs(s string, t string) int {
 	}
 
 	// If s != t
-	pairs := make(map[string]bool)  // matched pair and possible swaps candidates
-	missed := make(map[string]bool) // non-matching pairs
+	pairs := make(map[string]bool)             // matched pair
+	missed := make(map[string]bool)            // non-matching pairs
+	poolsOfCandidates := make(map[string]bool) // pools of candidates to be swapped
 
 	for i := 0; i < len(s); i++ {
 		pairs[fmt.Sprintf("%c-%c", s[i], t[i])] = true
 
 		if s[i] == t[i] { // Found a pair
 			output++
-			pairs[fmt.Sprintf("%c-%s", s[i], "true")] = true // It is a candidate to swap & it made a paired
+			poolsOfCandidates[fmt.Sprintf("%c-%s", s[i], "true")] = true // It is a candidate to swap & it made a paired
 			continue
 		}
 
 		missed[fmt.Sprintf("%c-%c", s[i], t[i])] = true
-		pairs[fmt.Sprintf("%c-%s", s[i], "false")] = true // It is a candidate to swap & it didn't make a paired
+		poolsOfCandidates[fmt.Sprintf("%c-%s", s[i], "false")] = true // It is a candidate to swap & it didn't make a paired
 	}
 
 	// case 3: Check if the inverse make creates two new matches: eg. pre-swap s='ab', t='ba'; after swap s='ba'
@@ -50,7 +51,7 @@ func matchingPairs(s string, t string) int {
 	for k := range missed {
 		values := strings.Split(k, "-")
 		value := fmt.Sprintf("%s-%s", values[1], "false") // We try we those values that didn't make a paired
-		if pairs[value] {
+		if poolsOfCandidates[value] {
 			return output + 1 // The swap creates a new match
 		}
 	}
@@ -59,7 +60,7 @@ func matchingPairs(s string, t string) int {
 	for k := range missed {
 		values := strings.Split(k, "-")
 		value := fmt.Sprintf("%s-%s", values[1], "true") // We try we those values that matched
-		if pairs[value] {
+		if poolsOfCandidates[value] {
 			return output // The swap didn't create any new match
 		}
 	}
@@ -92,6 +93,5 @@ func containsRepeatedChars(s string) bool {
 }
 
 func main() {
-	// Call matchingPairs() with test cases here
-
+	fmt.Println(matchingPairs("at", "ta"))
 }
