@@ -23,7 +23,8 @@ Minimum Length Substrings
 
     Do you need some help?
         - https://go.dev/blog/maps
+        - https://itnext.io/sliding-window-algorithm-technique-6001d5fbe8b3
         - https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/slidingwindowtechnique
         - https://www.youtube.com/watch?v=jSto0O4AJbM   
-        - https://itnext.io/sliding-window-algorithm-technique-6001d5fbe8b3
         - https://www.baeldung.com/cs/sliding-window-algorithm
+        - https://blog.reachsumit.com/posts/2020/10/leetcode-sliding-window/
