@@ -22,10 +22,10 @@ func (bst *BST) insertRec(node *Node, key int) *Node {
 		return &Node{key: key}
 	}
 
-	if key < bst.root.key {
+	if key < node.key {
 		node.left = bst.insertRec(node.left, key)
 	}
-	if key > bst.root.key {
+	if key > node.key {
 		node.right = bst.insertRec(node.right, key)
 	}
 
@@ -37,8 +37,7 @@ type queue struct {
 }
 
 func (q *queue) add(item *Node) {
-	items := q.items
-	q.items = append(items, item)
+	q.items = append(q.items, item)
 }
 
 func (q *queue) pop() *Node {
@@ -52,8 +51,8 @@ func (q *queue) pop() *Node {
 	return el
 }
 
-//
-func (bst *BST) bfsTranversal() {
+// Breadth-first transversal
+func (bst *BST) bfsTransversal() {
 	var q queue
 	q.add(bst.root)
 
@@ -73,7 +72,7 @@ func (bst *BST) bfsTranversal() {
 	}
 }
 
-func (bst *BST) bfsTranversalRec() {
+func (bst *BST) bfsTransversalRec() {
 	var q queue
 	q.add(bst.root)
 	bst.bfsRec(q)
@@ -98,3 +97,72 @@ func (bst *BST) bfsRec(q queue) {
 
 	bst.bfsRec(q)
 }
+
+// Depth-first transversal
+
+// Preorder <root><left><right>
+func (bst *BST) preOrderTransversalRec() {
+	preOrderRec(bst.root)
+}
+
+func preOrderRec(node *Node) {
+	if node == nil {
+		return
+	}
+
+	fmt.Println(node.key)
+
+	if node.left != nil {
+		preOrderRec(node.left)
+	}
+
+	if node.right != nil {
+		preOrderRec(node.right)
+	}
+}
+
+type stack struct {
+	items []*Node
+}
+
+func (s *stack) push(item *Node) {
+	s.items = append(s.items, item)
+}
+
+func (s *stack) pop() *Node {
+	if len(s.items) == 0 {
+		return nil
+	}
+
+	// Top element
+	top := len(s.items) - 1
+	item := s.items[top]
+
+	// Erase element (write zero value)
+	s.items[top] = nil
+	s.items = s.items[:top]
+
+	return item
+}
+
+func (bst *BST) preOrderTransversal() {
+	var s stack
+	s.push(bst.root)
+
+	for len(s.items) > 0 {
+		n := s.pop()
+		fmt.Println(n.key)
+
+		if n.right != nil {
+			s.push(n.right)
+		}
+
+		if n.left != nil {
+			s.push(n.left)
+		}
+	}
+}
+
+// Inorder
+
+// Postorder

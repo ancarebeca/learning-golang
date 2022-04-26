@@ -14,8 +14,9 @@ func TestInsertNode(t *testing.T) {
 	bst.insert(70)
 	bst.insert(60)
 	bst.insert(80)
-	bst.bfsTranversal()
-	fmt.Println("---")
-	bst.bfsTranversalRec()
 
+	fmt.Println("---")
+	bst.preOrderTransversalRec()
+	fmt.Println("---")
+	bst.preOrderTransversal()
 }
