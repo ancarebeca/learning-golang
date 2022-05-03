@@ -19,3 +19,5 @@ go.work
 # Ignore Mac system files
 .DS_store
 
+.idea/
+ .vscode/
