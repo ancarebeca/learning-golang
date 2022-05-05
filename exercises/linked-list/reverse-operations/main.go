@@ -16,24 +16,38 @@ func reverseOdds(head *Node) *Node {
 		curr = next
 	}
 
-	head = prev
-	return head
+	head.next = curr
+	return prev
 }
 
 func reverse(head *Node) *Node {
 
-	tempHead := &Node{data: 0, next: head}
-	prev := tempHead
+	tempHead := head
+	prev := head
 	curr := head
 
 	for curr != nil {
 		if curr.data%2 == 0 {
-			prev.next = reverseOdds(curr)
+			v := reverseOdds(curr)
+			prev.next = v
 		}
 
 		prev = curr
 		curr = curr.next
 	}
 
-	return tempHead.next
+	return tempHead
+}
+
+func displayNodes(head *Node) []int {
+	result := []int{}
+	curr := head
+
+	result = append(result, curr.data)
+	for curr.next != nil {
+		curr = curr.next
+		result = append(result, curr.data)
+	}
+
+	return result
 }
