@@ -33,3 +33,5 @@ https://www.youtube.com/watch?v=mBNrRy2_hVs&ab_channel=NeetCode
 https://www.youtube.com/watch?v=dT6dvdbpChA&ab_channel=TECHDOSE
 https://runestone.academy/ns/books/published/pythonds/Recursion/DynamicProgramming.html
 http://www.cs.uni.edu/~fienup/cs270s04/lectures/lec6_1-29-04_coin_change_web.htm
+https://runestone.academy/ns/books/published/pythonds/Recursion/DynamicProgramming.html#lst-change2
+http://www.cs.uni.edu/~fienup/cs270s04/lectures/lec6_1-29-04_coin_change_web.htm

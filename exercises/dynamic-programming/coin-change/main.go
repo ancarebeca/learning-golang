@@ -76,3 +76,37 @@ func countCoin(coins []int, amount int, memoized []int) int {
 	memoized[amount] = minCoins
 	return minCoins
 }
+
+// Complexity: O(amount) * len(coins)
+// Space Complexity: O (amount)
+func coinDynamicPrograming(coins []int, amount int) int {
+	// Initialize the result array to the possible max value
+	totalOfCoins := make([]int, amount+1)
+	for i := 1; i <= amount; i++ {
+		totalOfCoins[i] = amount + 1
+	}
+
+	// Base case
+	totalOfCoins[0] = 0
+
+	for a := 1; a <= amount; a++ {
+		for _, c := range coins {
+			if a-c >= 0 {
+				totalOfCoins[a] = min(totalOfCoins[a], 1+totalOfCoins[a-c])
+			}
+		}
+	}
+
+	if totalOfCoins[amount] == amount+1 {
+		return -1
+	}
+
+	return totalOfCoins[amount]
+}
+
+func min(a int, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
