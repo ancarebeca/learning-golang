@@ -31,7 +31,7 @@ func findPositions(arr []int, x int) []int {
 			elementsToPop = len(queue)
 		}
 
-		// Pop elementsToPop elements from the queue and place them in a temporary queue.
+		// pop elementsToPop elements from the queue and place them in a temporary queue.
 		temp = queue[0:elementsToPop]
 		queue = queue[elementsToPop:]
 
