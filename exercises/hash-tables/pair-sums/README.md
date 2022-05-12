@@ -29,3 +29,6 @@ Pair Sums
         arr = [1, 5, 3, 3, 3]
         output = 4
         There's one valid pair 1+5, and three different valid pairs 3+3 (the 3rd and 4th elements, 3rd and 5th elements, and 4th and 5th elements).
+
+    Hint:
+        https://www.youtube.com/watch?v=bimTs_djPkQ&ab_channel=SolvewithShubh
