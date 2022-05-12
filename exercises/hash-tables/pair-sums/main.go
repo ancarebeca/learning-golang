@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func pairSums(k int32, n int32, arr []int32) int32 {
 	var output int32
 
@@ -31,4 +33,6 @@ func pairSums(k int32, n int32, arr []int32) int32 {
 	}
 	return output / 2
 }
-func main() {}
+func main() {
+	fmt.Println(pairSums(6, 5, []int32{1, 2, 3, 4, 4}))
+}
