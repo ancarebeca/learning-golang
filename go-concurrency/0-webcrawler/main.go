@@ -1,101 +1,53 @@
+//////////////////////////////////////////////////////////////////////
+//
+// Your task is to change the code to limit the crawler to at most one
+// page per second, while maintaining concurrency (in other words,
+// Crawl() must be called concurrently)
+//
+// @hint: you can achieve this by adding 3 lines
+//
+
 package main
+
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
-type Fetcher interface {
-	// Fetch returns the body of URL and
-	// a slice of URLs found on that page.
-	Fetch(url string) (body string, urls []string, err error)
-}
-
-// Crawl uses fetcher to recursively crawl
-// pages starting with url, to a maximum of depth.
-func Crawl(url string, depth int, fetcher Fetcher, visited *visited, wg *sync.WaitGroup) {
+// Crawl uses `fetcher` from the `mockfetcher.go` file to imitate a
+// real crawler. It crawls until the maximum depth has reached.
+func Crawl(url string, depth int, wg *sync.WaitGroup) {
 	defer wg.Done()
-	defer visited.mu.Unlock()
 
-	visited.mu.Lock()
-	_, ok := visited.v[url]
-	if depth <= 0 || ok {
+	if depth <= 0 {
 		return
 	}
-	visited.v[url] = true
-
+	<-throttle
 	body, urls, err := fetcher.Fetch(url)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+
 	fmt.Printf("found: %s %q\n", url, body)
+	wg.Add(len(urls))
 	for _, u := range urls {
-		wg.Add(1)
-		go Crawl(u, depth-1, fetcher, visited, wg)
+		// Do not remove the `go` keyword, as Crawl() must be
+		// called concurrently
+		go Crawl(u, depth-1, wg)
 	}
 	return
 }
 
+var throttle <-chan time.Time // 1 calls per second
 
-type visited struct {
-	mu sync.Mutex
-	v  map[string]bool
-}
+const rateLimit = 1 * time.Second
 
 func main() {
-	v := make(map[string]bool)
-	visited := visited{v: v, }
 	var wg sync.WaitGroup
+	throttle = time.Tick(rateLimit)
 	wg.Add(1)
-	Crawl("https://golang.org/", 4, fetcher, &visited, &wg)
+	Crawl("http://golang.org/", 4, &wg)
 	wg.Wait()
-}
-
-// fakeFetcher is Fetcher that returns canned results.
-type fakeFetcher map[string]*fakeResult
-
-type fakeResult struct {
-	body string
-	urls []string
-}
-
-func (f fakeFetcher) Fetch(url string) (string, []string, error) {
-	if res, ok := f[url]; ok {
-		return res.body, res.urls, nil
-	}
-	return "", nil, fmt.Errorf("not found: %s", url)
-}
-
-// fetcher is a populated fakeFetcher.
-var fetcher = fakeFetcher{
-	"https://golang.org/": &fakeResult{
-		"The Go Programming Language",
-		[]string{
-			"https://golang.org/pkg/",
-			"https://golang.org/cmd/",
-		},
-	},
-	"https://golang.org/pkg/": &fakeResult{
-		"Packages",
-		[]string{
-			"https://golang.org/",
-			"https://golang.org/cmd/",
-			"https://golang.org/pkg/fmt/",
-			"https://golang.org/pkg/os/",
-		},
-	},
-	"https://golang.org/pkg/fmt/": &fakeResult{
-		"Package fmt",
-		[]string{
-			"https://golang.org/",
-			"https://golang.org/pkg/",
-		},
-	},
-	"https://golang.org/pkg/os/": &fakeResult{
-		"Package os",
-		[]string{
-			"https://golang.org/",
-			"https://golang.org/pkg/",
-		},
-	},
 }
