@@ -93,7 +93,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Println("Created new session with ID", sID)
+	log.Println("Created new session with valor", sID)
 
 	// Update session data
 	data := make(map[string]interface{})

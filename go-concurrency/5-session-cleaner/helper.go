@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////
 //
 // DO NOT EDIT THIS PART
-// Your task is to edit `main.go`
+// Your task is to edit `___main.go`
 //
 
 package main

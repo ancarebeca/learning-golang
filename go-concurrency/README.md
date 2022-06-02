@@ -31,3 +31,17 @@ The Go community has plenty resources to read about go's concurrency model and h
  as the name is changed.
 
 ```
+Documentation:
+- [Concurrency](https://go.dev/doc/effective_go#concurrency)
+- [Solutions](https://github.com/loong/go-concurrency-solutions)
+- https://github.com/derekahn/go-concurrency-solutions/blob/master/1-producer-consumer/main.go
+- [Google I/O 2012 - Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs&ab_channel=GoogleDevelopers)
+
+More Exercises:
+- https://github.com/andcloudio/go-concurrency-exercises
+- [Rate Limiting](https://github.com/golang/go/wiki/RateLimiting)
+
+
+https://github.com/syafdia/go-exercise/tree/master/src/concurrency
+https://medium.com/code-chasm/go-concurrency-pattern-worker-pool-a437117025b1
+https://github.com/lotusirous/go-concurrency-patterns/blob/main/7-quit-signal/main.go
