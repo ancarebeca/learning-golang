@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func maxNumberOfFamilies(n int, reservedSeats [][]int) int {
 
 	seats := make(map[int]int)
@@ -11,12 +9,6 @@ func maxNumberOfFamilies(n int, reservedSeats [][]int) int {
 
 	output := 0
 	for _, v := range seats {
-		fmt.Printf("v >>1 = %b\n", v>>1)
-		fmt.Printf("1 << 8 = %b\n", 1<<8)
-		fmt.Printf("v >> 1 &^ (1 << 8) = %b\n", v)
-		fmt.Println()
-		fmt.Println()
-
 		v = v >> 1 &^ (1 << 8)
 		if v == 0 {
 			output += 2

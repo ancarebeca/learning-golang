@@ -1,6 +1,5 @@
 package main
 
-//https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/
 import (
 	"fmt"
 	"math"
