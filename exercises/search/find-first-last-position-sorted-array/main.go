@@ -87,5 +87,3 @@ func searchRange(nums []int, target int) []int {
 func main() {
 	fmt.Println(searchRange([]int{3, 3, 3}, 3))
 }
-
-//https://leetcode.com/problems/plates-between-candles/
