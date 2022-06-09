@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestMinOverallAwkwardness(t *testing.T) {
+func TestNumberOfFamilies(t *testing.T) {
 	assert.Equal(t, 2, maxNumberOfFamilies(2, [][]int{
 		{1, 2},
 		{1, 3},

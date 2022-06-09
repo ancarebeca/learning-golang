@@ -4,7 +4,7 @@ import "fmt"
 
 /** Brute Force **
 The time complexity of the above algorithm is exponential O(2^n), where ‘n’ represents the total number.
-The space complexity is O(n), this memory which will be used to store the recursion stack.
+The space complexity is O(n), this memory which will be used to repository the recursion stack.
 **/
 
 func canPartitionBruteForce(arr []int) bool {
