@@ -47,6 +47,7 @@ func searchRange(nums []int, target int) []int {
 	return o
 }
 
+// Another solution
 //func searchRange(nums []int, target int) []int {
 //	l := 0
 //	r := len(nums)
@@ -84,23 +85,7 @@ func searchRange(nums []int, target int) []int {
 //}
 
 func main() {
-	o := searchRange([]int{3, 3, 3}, 3) //=> [0,2]
-	fmt.Println(o)
-
-	o = searchRange([]int{1}, 1) // => [0,0]
-	fmt.Println(o)
-
-	o = searchRange([]int{5, 7, 7, 8, 8, 10}, 8) // => [3,4]
-	fmt.Println(o)
-
-	o = searchRange([]int{2, 2}, 2) //=> [0,1]
-	fmt.Println(o)
-
-	o = searchRange([]int{}, 3) //=> [-1,-1]
-	fmt.Println(o)
-
-	o = searchRange([]int{5, 7, 7, 8, 8, 10}, 6) //=> [-1,-1]
-	fmt.Println(o)
+	fmt.Println(searchRange([]int{3, 3, 3}, 3))
 }
 
 //https://leetcode.com/problems/plates-between-candles/
