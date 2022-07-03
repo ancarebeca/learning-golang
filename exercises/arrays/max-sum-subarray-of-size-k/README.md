@@ -9,5 +9,4 @@ Maximum sum subarray of Size k
 
     Explanation: Here the subarray [1, 7] is the sum of the maximum sum.
 
-
     Hint: https://innoskrit.in/blog/sliding-window-pattern/maximum-sum-of-k-size-subarray/
